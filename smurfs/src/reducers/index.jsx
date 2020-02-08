@@ -9,7 +9,11 @@ export function smurfReducer(state = initialState, action) {
 				smurfs: action.payload
 			};
 		case 'SUBMIT':
-			console.log(state);
+			// console.log(state);
+			return {
+				smurfs: [...state.smurfs, action.payload]
+			};
+		case 'DELETE_SMURF':
 			return {
 				smurfs: [...state.smurfs, action.payload]
 			};

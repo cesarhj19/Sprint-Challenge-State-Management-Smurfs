@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { getSmurfs } from '../actions/getSmurfs';
 import { submit } from '../actions/submit';
+import { deleteSmurf } from '../actions/deleteSmurf';
 import Smurfs from './smurfs';
 import Form from './form';
 import './App.css';
@@ -25,6 +26,10 @@ function App(props) {
 		setName('');
 		setAge('');
 		setHeight('');
+	};
+
+	const handleDelete = id => {
+		props.deleteSmurf(id);
 	};
 
 	const handleNameChange = e => {
@@ -54,7 +59,7 @@ function App(props) {
 				age={age}
 				height={height}
 			/>
-			<Smurfs smurfs={props.smurfs} />
+			<Smurfs smurfs={props.smurfs} doDelete={handleDelete} />
 		</div>
 	);
 }
@@ -67,6 +72,7 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = {
 	getSmurfs,
+	deleteSmurf,
 	submit
 };
 
